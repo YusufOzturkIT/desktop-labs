@@ -1,0 +1,19 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="HelloWindow.MainWindow"
+        Title="List 1 Your Name" 
+        Width="400" Height="300">
+    <StackPanel Margin="20" Spacing="10">
+        <!-- Adın ve Grubun -->
+        <TextBlock Text="Your Name - Group A" FontSize="16" FontWeight="Bold"/>
+        
+        <!-- Input Kutusu (x:Name ve KeyDown eklendi) -->
+        <TextBox x:Name="NameBox" KeyDown="OnNameBoxKeyDown" Watermark="Enter your name..."/>
+        
+        <!-- Buton -->
+        <Button Content="Say hello" Click="OnHelloClick" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"/>
+        
+        <!-- Sonuç Yazısı -->
+        <TextBlock x:Name="ResultText" FontSize="14"/>
+    </StackPanel>
+</Window>

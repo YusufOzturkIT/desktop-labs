@@ -1,0 +1,60 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="BmiCalculator.RegisterWindow"
+        Title="Register" Width="400" Height="320"
+        MinWidth="350" MinHeight="300"
+        WindowStartupLocation="CenterOwner">
+    
+    <Grid Margin="15" RowDefinitions="Auto,Auto,Auto,Auto,Auto,*,Auto" ColumnDefinitions="*,*">
+        <!-- Ad / Soyad (Side by side) -->
+        <StackPanel Grid.Row="0" Grid.Column="0" Margin="5">
+            <TextBlock Text="First Name:"/>
+            <TextBox x:Name="FirstNameBox"/>
+        </StackPanel>
+        
+        <StackPanel Grid.Row="0" Grid.Column="1" Margin="5">
+            <TextBlock Text="Last Name:"/>
+            <TextBox x:Name="LastNameBox"/>
+        </StackPanel>
+
+        <!-- E-mail (Full Width) -->
+        <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="5">
+            <TextBlock Text="E-mail:"/>
+            <TextBox x:Name="EmailBox"/>
+        </StackPanel>
+
+        <!-- Password / Repeat Password -->
+        <StackPanel Grid.Row="2" Grid.Column="0" Margin="5">
+            <TextBlock Text="Password:"/>
+            <TextBox x:Name="PasswordBox" PasswordChar="*"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Grid.Column="1" Margin="5">
+            <TextBlock Text="Repeat Password:"/>
+            <TextBox x:Name="RepeatPasswordBox" PasswordChar="*"/>
+        </StackPanel>
+
+        <!-- Country -->
+        <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="5">
+            <TextBlock Text="Country:"/>
+            <ComboBox x:Name="CountryBox" HorizontalAlignment="Stretch" SelectedIndex="0">
+                <ComboBoxItem Content="Poland"/>
+                <ComboBoxItem Content="Germany"/>
+                <ComboBoxItem Content="Turkey"/>
+                <ComboBoxItem Content="USA"/>
+                <ComboBoxItem Content="UK"/>
+            </ComboBox>
+        </StackPanel>
+
+        <!-- Terms Checkbox -->
+        <CheckBox x:Name="TermsCheckBox" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" 
+                  Content="I accept the terms" Margin="5" IsCheckedChanged="OnTermsCheckedChanged"/>
+
+        <!-- Action Buttons -->
+        <StackPanel Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" 
+                    Orientation="Horizontal" HorizontalAlignment="Right" Spacing="10" Margin="5">
+            <Button Content="Cancel" Click="OnCancelClick"/>
+            <Button x:Name="RegisterButton" Content="Register" IsEnabled="False" Click="OnRegisterClick"/>
+        </StackPanel>
+    </Grid>
+</Window>

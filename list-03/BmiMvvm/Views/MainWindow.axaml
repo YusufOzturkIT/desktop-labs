@@ -1,22 +1,72 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="using:BmiMvvm.ViewModels"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="BmiMvvm.Views.MainWindow"
         x:DataType="vm:MainViewModel"
         Icon="/Assets/avalonia-logo.ico"
-        Title="BmiMvvm">
+        Title="List 3: MVVM Tasks" Width="500" Height="600"
+        MinWidth="450" MinHeight="550">
 
     <Design.DataContext>
-        <!-- This only sets the DataContext for the previewer in an IDE,
-             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-        <vm:MainViewModel />
+        <vm:MainViewModel/>
     </Design.DataContext>
 
-    <TextBox Text="{Binding Greeting}"
-             HorizontalAlignment="Center"
-             VerticalAlignment="Center" />
+    <TabControl Margin="10">
+        <!-- TAB 1: BMI CALCULATOR (MVVM) -->
+        <TabItem Header="BMI Calculator">
+            <StackPanel Margin="15" Spacing="12">
+                <Grid RowDefinitions="Auto,Auto" ColumnDefinitions="100,*,90">
+                    <!-- Weight -->
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Weight:" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Weight}" Margin="5"/>
+                    <ComboBox Grid.Row="0" Grid.Column="2" ItemsSource="{Binding WeightUnits}" 
+                              SelectedItem="{Binding SelectedWeightUnit}" HorizontalAlignment="Stretch"/>
 
+                    <!-- Height -->
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Height:" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Height}" Margin="5"/>
+                    <ComboBox Grid.Row="1" Grid.Column="2" ItemsSource="{Binding HeightUnits}" 
+                              SelectedItem="{Binding SelectedHeightUnit}" HorizontalAlignment="Stretch"/>
+                </Grid>
+
+                <!-- Dynamic Live Result -->
+                <TextBlock Text="{Binding BmiResultText}" 
+                           Foreground="{Binding CategoryColor}" 
+                           FontSize="18" FontWeight="Bold"/>
+
+                <!-- Task 3: Save Command -->
+                <Button Content="Save to History" 
+                        Command="{Binding SaveToHistoryCommand}" 
+                        HorizontalAlignment="Left"/>
+
+                <Separator Margin="0,10"/>
+
+                <!-- History List -->
+                <TextBlock Text="Calculation History:" FontWeight="SemiBold"/>
+                <ListBox ItemsSource="{Binding History}" Height="150"/>
+            </StackPanel>
+        </TabItem>
+
+        <!-- TAB 2: TEMPERATURE CONVERTER -->
+        <TabItem Header="Temperature Converter">
+            <StackPanel Margin="15" Spacing="12">
+                <Grid RowDefinitions="Auto,Auto,Auto" ColumnDefinitions="120,*">
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Celsius (°C):" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Celsius}" Margin="5"/>
+
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Fahrenheit (°F):" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Fahrenheit}" Margin="5"/>
+
+                    <TextBlock Grid.Row="2" Grid.Column="0" Text="Kelvin (K):" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Kelvin}" Margin="5"/>
+                </Grid>
+
+                <!-- Warning Message -->
+                <TextBlock Text="{Binding TempWarning}" Foreground="Red" FontWeight="Bold"/>
+
+                <!-- Reset Button -->
+                <Button Content="Reset (0 °C)" Command="{Binding ResetTempCommand}" HorizontalAlignment="Left"/>
+            </StackPanel>
+        </TabItem>
+    </TabControl>
 </Window>

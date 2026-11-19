@@ -1,0 +1,10 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:PersonalBudgetManager.ViewModels"
+             x:Class="PersonalBudgetManager.Views.InventoryView"
+             x:DataType="vm:InventoryViewModel">
+    <StackPanel Spacing="10" Margin="20">
+        <TextBlock Text="🛒 Inventory &amp; Expense Items" FontSize="20" FontWeight="Bold"/>
+        <TextBlock Text="{Binding Message}" FontSize="14" Foreground="Gray"/>
+    </StackPanel>
+</UserControl>

@@ -1,0 +1,32 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:PersonalBudgetManager.ViewModels"
+        xmlns:views="using:PersonalBudgetManager.Views"
+        x:Class="PersonalBudgetManager.Views.MainWindow"
+        x:DataType="vm:MainViewModel"
+        Title="Personal Budget &amp; Inventory Manager" Width="750" Height="450">
+
+    <Grid RowDefinitions="Auto,*">
+        <!-- Top Navigation Bar -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Background="#2D2D30" Spacing="10" Margin="10">
+            <Button Content="Dashboard" Command="{Binding NavigateToDashboardCommand}" Padding="10,5"/>
+            <Button Content="Inventory" Command="{Binding NavigateToInventoryCommand}" Padding="10,5"/>
+            <Button Content="Data / Logs" Command="{Binding NavigateToDataLogCommand}" Padding="10,5"/>
+        </StackPanel>
+
+        <!-- Dynamic Content Area -->
+        <ContentControl Grid.Row="1" Content="{Binding CurrentView}">
+            <ContentControl.DataTemplates>
+                <DataTemplate DataType="{x:Type vm:DashboardViewModel}">
+                    <views:DashboardView/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type vm:InventoryViewModel}">
+                    <views:InventoryView/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type vm:DataLogViewModel}">
+                    <views:DataLogView/>
+                </DataTemplate>
+            </ContentControl.DataTemplates>
+        </ContentControl>
+    </Grid>
+</Window>

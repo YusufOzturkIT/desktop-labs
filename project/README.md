@@ -1,6 +1,6 @@
 # Desktop Platform Comparison: Avalonia UI vs. WPF
 
-**Authors:** Yusuf Öztürk & Partner  
+**Authors:** Yusuf Öztürk  
 **Instructor:** Krzysztof Osada  
 **Course:** Desktop Application Development  
 

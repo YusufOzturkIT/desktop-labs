@@ -21,3 +21,23 @@ A desktop application built with C# and Avalonia UI designed to help users track
 8. **Unit Testing:** Comprehensive xUnit test suite (minimum 8 passing tests) covering budget calculation logic and validation rules.
 
 ## 3. Rough Sketch of Main Screens
++-----------------------------------------------------------------------+
+|  BUDGET & INVENTORY MANAGER        [Dashboard]  [Entries]  [Data/Log] |
++-----------------------------------------------------------------------+
+|  SUMMARY: Total Income: $4,500 | Expenses: $2,100 | Savings: $2,400    |
+|  ALERTS: Grocery category reached 90% of monthly limit!               |
+|                                                                       |
+|  [ Import CSV ]  [ Set Auto-Folder Watcher ]                          |
+|                                                                       |
+|  Date       | Item Name       | Category    | Amount    | Status      |
+|  -----------+-----------------+-------------+-----------+-------------+
+|  2026-11-01 | Supermarket     | Groceries   | $145.20   | Completed   |
+|  2026-11-03 | Electricity Bill| Utilities   | $85.00    | Completed   |
++-----------------------------------------------------------------------+
+|  STATUS: System Ready | Monitored Folder: /Users/apple/Transactions   |
++-----------------------------------------------------------------------+
+
+
+## 4. Division of Work
+* **Yusuf Öztürk:** Domain Models (`Transaction`, `CategoryBudget`), Financial Calculation Engine, SQLite Repository Service, Layered Architecture Interfaces, and xUnit Test Suite.
+* **Partner Name:** Avalonia Views (XAML layout & styling), Navigation Service, `FileSystemWatcher` Service, System Notifications, and Data Validation Rules.

@@ -3,8 +3,45 @@
              xmlns:vm="using:PersonalBudgetManager.ViewModels"
              x:Class="PersonalBudgetManager.Views.InventoryView"
              x:DataType="vm:InventoryViewModel">
-    <StackPanel Spacing="10" Margin="20">
-        <TextBlock Text="🛒 Inventory &amp; Expense Items" FontSize="20" FontWeight="Bold"/>
-        <TextBlock Text="{Binding Message}" FontSize="14" Foreground="Gray"/>
-    </StackPanel>
+    <Grid RowDefinitions="Auto,Auto,*" Margin="20">
+        <TextBlock Grid.Row="0" Text="🛒 Inventory and Expense Manager" FontSize="20" FontWeight="Bold" Margin="0,0,0,15"/>
+
+        <Border Grid.Row="1" Background="#252526" CornerRadius="6" Padding="15" Margin="0,0,0,15">
+            <StackPanel Spacing="10">
+                <TextBlock Text="Add New Transaction" FontWeight="Bold" Foreground="White"/>
+                
+                <Grid ColumnDefinitions="2*,*,*,*" Margin="0,5">
+                    <TextBox Grid.Column="0" PlaceholderText="Title (e.g. Rent, Groceries)" Text="{Binding NewTitle}" Margin="0,0,5,0"/>
+                    <TextBox Grid.Column="1" PlaceholderText="Amount ($)" Text="{Binding NewAmountText}" Margin="5,0"/>
+                    <ComboBox Grid.Column="2" SelectedIndex="0" Text="{Binding NewCategory}" Margin="5,0">
+                        <ComboBoxItem Content="Groceries"/>
+                        <ComboBoxItem Content="Utilities"/>
+                        <ComboBoxItem Content="Rent"/>
+                        <ComboBoxItem Content="Income"/>
+                        <ComboBoxItem Content="Entertainment"/>
+                    </ComboBox>
+                    <ComboBox Grid.Column="3" SelectedIndex="0" Text="{Binding NewType}" Margin="5,0">
+                        <ComboBoxItem Content="Expense"/>
+                        <ComboBoxItem Content="Income"/>
+                    </ComboBox>
+                </Grid>
+
+                <Button Content="Add Transaction" Command="{Binding AddTransactionCommand}" HorizontalAlignment="Left" Padding="15,6"/>
+                <TextBlock Text="{Binding ErrorMessage}" Foreground="Red" FontSize="12"/>
+            </StackPanel>
+        </Border>
+
+        <ListBox Grid.Row="2" ItemsSource="{Binding Items}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid ColumnDefinitions="*,*,*,Auto">
+                        <TextBlock Grid.Column="0" Text="{Binding Title}" FontWeight="SemiBold"/>
+                        <TextBlock Grid.Column="1" Text="{Binding Category}" Foreground="Gray"/>
+                        <TextBlock Grid.Column="2" Text="{Binding Amount, StringFormat='${0:N2}'}" FontWeight="Bold"/>
+                        <Button Grid.Column="3" Content="Remove" Command="{Binding $parent[UserControl].((vm:InventoryViewModel)DataContext).RemoveTransactionCommand}" CommandParameter="{Binding}" Padding="8,2" FontSize="11"/>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
 </UserControl>

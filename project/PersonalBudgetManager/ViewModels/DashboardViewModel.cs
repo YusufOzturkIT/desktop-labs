@@ -1,6 +1,31 @@
+using CommunityToolkit.Mvvm.ComponentModel;
+using PersonalBudgetManager.Services;
+
 namespace PersonalBudgetManager.ViewModels;
 
-public class DashboardViewModel : ViewModelBase
+public partial class DashboardViewModel : ViewModelBase
 {
-    public string Message => "Dashboard: Total Savings & Category Breakdown";
+    private readonly ITransactionService _transactionService;
+
+    [ObservableProperty]
+    private decimal _totalIncome;
+
+    [ObservableProperty]
+    private decimal _totalExpenses;
+
+    [ObservableProperty]
+    private decimal _netSavings;
+
+    public DashboardViewModel(ITransactionService transactionService)
+    {
+        _transactionService = transactionService;
+        RefreshSummary();
+    }
+
+    public void RefreshSummary()
+    {
+        TotalIncome = _transactionService.GetTotalIncome();
+        TotalExpenses = _transactionService.GetTotalExpenses();
+        NetSavings = _transactionService.GetNetSavings();
+    }
 }

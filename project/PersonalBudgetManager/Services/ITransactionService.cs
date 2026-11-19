@@ -11,4 +11,6 @@ public interface ITransactionService
     decimal GetTotalIncome();
     decimal GetTotalExpenses();
     decimal GetNetSavings();
+    void ExportToCsv(string filePath);
+    int ImportFromCsv(string filePath);
 }
